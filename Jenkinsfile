@@ -39,34 +39,36 @@ pipeline {
             }
         }
     }
-post {
-    success {
-        echo 'CI Pipeline completed successfully!'
 
-        emailext(
-            to: 'velamaladurga.23.cse@anits.edu.in',
-            subject: "Jenkins Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """The Jenkins CI pipeline completed successfully.
+    post {
+        success {
+            echo 'CI Pipeline completed successfully!'
 
-Job: ${env.JOB_NAME}
-Build Number: ${env.BUILD_NUMBER}
-Build URL: ${env.BUILD_URL}
-"""
-        )
-    }
-
-    failure {
-        echo 'CI Pipeline failed!'
-
-        emailext(
-            to: 'velamaladurga.23.cse@anits.edu.in',
-            subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """The Jenkins CI pipeline failed.
+            emailext(
+                to: 'velamaladurga.23.cse@anits.edu.in',
+                subject: "Jenkins Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """The Jenkins CI pipeline completed successfully.
 
 Job: ${env.JOB_NAME}
 Build Number: ${env.BUILD_NUMBER}
 Build URL: ${env.BUILD_URL}
 """
-        )
+            )
+        }
+
+        failure {
+            echo 'CI Pipeline failed!'
+
+            emailext(
+                to: 'velamaladurga.23.cse@anits.edu.in',
+                subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """The Jenkins CI pipeline failed.
+
+Job: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+"""
+            )
+        }
     }
 }
