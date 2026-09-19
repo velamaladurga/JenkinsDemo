@@ -28,9 +28,7 @@ public class App {
             grade = 'F';
         }
 
-        /* changed this line(error) 
-        for detecting */
-        System.out.println("===== Student Grade Report =====
+        System.out.println("===== Student Grade Report =====");
         System.out.println("Student: " + studentName);
         System.out.println("Total Marks: " + total);
         System.out.println("Average: " + average);
